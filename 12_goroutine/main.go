@@ -6,24 +6,17 @@ import (
 )
 
 func main() {
-	// fmt.Println("Hello main thread 1")
-	// time.Sleep(1 * time.Second)
+	var wg sync.WaitGroup // ประกาศตัวแปร wg ของประเภท WaitGroup
+	wg.Add(3)             // กำหนดให้ WaitGroup รอการทำงานของ 3 Goroutines
 
-	// go hello()
-
-	// fmt.Println("Hello main thread 2")
-
-	var wg sync.WaitGroup
-	wg.Add(3)
-
-	for i := 1; i <= 3; i++ {
-		go func(i int, wg *sync.WaitGroup) {
-			defer wg.Done()
-			fmt.Println(i)
-		}(i, &wg)
+	for i := 1; i <= 3; i++ { // วนลูปตั้งแต่ i = 1 ถึง i = 3
+		go func(i int, wg *sync.WaitGroup) { // สร้าง Goroutine สำหรับแต่ละค่า i
+			defer wg.Done() // เมื่อ Goroutine นี้เสร็จสิ้น จะลดจำนวน counter ของ WaitGroup ลง 1
+			fmt.Println(i)  // พิมพ์ค่าของ i ออกมา
+		}(i, &wg) // ส่งค่า i และตัวชี้ไปยัง wg ให้กับฟังก์ชัน Goroutine
 	}
 
-	wg.Wait()
+	wg.Wait() // รอจนกว่า Goroutines ทั้งหมดจะเสร็จสิ้น
 }
 
 // func hello() {
