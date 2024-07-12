@@ -17,15 +17,6 @@ type (
 	Number interface {
 		int | float64
 	}
-
-	Player[T Number] struct {
-		Name   string
-		Age    int
-		Damage T
-	}
-
-	Database[T Number] interface {
-	}
 )
 
 func sum[T Number](nums []T) T {

@@ -1,27 +1,45 @@
 package main
 
-import "fmt"
+import (
+	"encoding/json" // มีการ Import Encoding JSON เข้ามา
+	"fmt"
+)
 
-type Player struct {
-	Username string `json:"username"`
-	Level    uint   `json:"level"`
-	Status   string `json:"status"`
-	Class    string `json:"class"`
-}
-
-func (p *Player) LevelUp() {
-	p.Level++
+type customer struct { // มีการปรับ Field ให้ขึ้นต้นตัวใหญ่
+	Firstname string
+	Lastname  string
+	Code      int
+	Phone     string
 }
 
 func main() {
-	player1 := Player{
-		Username: "player1",
-		Level:    1,
-		Status:   "active",
-		Class:    "warrior",
+	customerLists := []customer{}
+	customer1 := customer{
+		Firstname: "Chaiyarin",
+		Lastname:  "Niamsuwan",
+		Code:      111990,
+		Phone:     "085661234",
+	}
+	customer2 := customer{
+		Firstname: "Atikom",
+		Lastname:  "Sombutjalearn",
+		Code:      111991,
+		Phone:     "085664321",
+	}
+	customer3 := customer{
+		Firstname: "Kritsana",
+		Lastname:  "Punyaphon",
+		Code:      111992,
+		Phone:     "085662344",
+	}
+	customerLists = append(customerLists, customer1)
+	customerLists = append(customerLists, customer2)
+	customerLists = append(customerLists, customer3)
+	customerListsJson, err := json.Marshal(customerLists)
+
+	if err != nil {
+		fmt.Println(err)
 	}
 
-	player1.LevelUp()
-
-	fmt.Println(player1)
+	fmt.Println(string(customerListsJson))
 }

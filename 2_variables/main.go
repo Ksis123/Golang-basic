@@ -9,7 +9,6 @@ func main() {
 	fmt.Println(a)
 
 	// Dynamic type กำหนดแค่รูปตัวแปร ส่วน type เดี๋ยวมัน auto ให้
-	b := 20
-
+	b := "20"
 	fmt.Println(b)
 }

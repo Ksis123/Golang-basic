@@ -4,13 +4,13 @@ import "fmt"
 
 func main() {
 	// Dynamic variable
-	a := 10
-	b := 20
+	a := 9
+	b := 2
 
 	fmt.Println("Add : ", a+b)
 	fmt.Println("Subtract", a-b)
 	fmt.Println("Multiply", a*b)
-	fmt.Println("Divide", a/b) // ได้เศษ
+	fmt.Println("Divide", a/b) // ได้ผลละพ์
 	fmt.Println("Mod", a%b)    //คืนค่าเศษที่เหลือจากการหาร:
 
 	fmt.Println()
